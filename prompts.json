@@ -1,0 +1,50 @@
+[
+  {
+    "index": 1,
+    "title": "Collapsing Ringworld Library",
+    "narrative_role": "opening",
+    "prompt_text": "Wide establishing shot of a crystalline library on a collapsing ringworld. A courier android stands at the edge of a glass‑ribbed walkway, towering shelves of crystalline archives shimmer around them as pieces of the ring arc peel away into space. Shot type: ultra‑wide 24 mm, high perspective showing scale. Composition: sweeping arcs, strong vanishing point. Include floating debris and holographic glyphs swirling in the air. Art style: iridescent bio‑tech realism with cathedral‑scale hard‑sci‑fi forms; subtle neon‑noir mood; consistent palette of teal/indigo with copper accents. Lighting/composition: volumetric rim light and soft god rays shining through fractal glass. Rendering intent: high detail, clean edges. Avoid: text, watermarks, artifacts."
+  },
+  {
+    "index": 2,
+    "title": "Star‑Seed Heist",
+    "narrative_role": "rising action",
+    "prompt_text": "Mid shot of the courier android reaching into a crystalline vault to seize a glowing living star‑seed, veins of light coursing through its transparent hands. Background shows fractal circuitry and luminous data streams. Shot type: 50 mm, medium close‑up capturing hands and star‑seed. Composition: centered focus with subtle diagonal lines. Art style: iridescent bio‑tech realism with cathedral‑scale hard‑sci‑fi forms; subtle neon‑noir mood; consistent palette of teal/indigo with copper accents. Lighting/composition: rim light on hands and star‑seed, soft bloom. Rendering intent: high detail, clean edges. Avoid: text, watermarks, artifacts."
+  },
+  {
+    "index": 3,
+    "title": "Escape from the Ring",
+    "narrative_role": "rising action",
+    "prompt_text": "Low‑angle dynamic shot of the courier sprinting along a collapsing catwalk as the ringworld structure crumbles behind, giant crystal shards falling and explosions lighting the scene. Shot type: 35 mm, low angle with motion blur hinting at speed. Composition: S‑curve walkway leading into distance. Include shards and sparks. Art style: iridescent bio‑tech realism with cathedral‑scale hard‑sci‑fi forms; subtle neon‑noir mood; consistent palette of teal/indigo with copper accents. Lighting/composition: hard desert sun with spectral glints; volumetric dust. Rendering intent: high detail, clean edges. Avoid: text, watermarks, artifacts."
+  },
+  {
+    "index": 4,
+    "title": "Deep‑Space Chase",
+    "narrative_role": "rising action",
+    "prompt_text": "Wide long‑lens shot of the courier’s sleek courier ship racing through a vibrant magenta nebula, trailing luminescent particles, pursued by dark drone silhouettes. Shot type: 135 mm telephoto, compressing cosmic elements. Composition: diagonal drift with star‑seed glow reflecting on the hull. Art style: iridescent bio‑tech realism with cathedral‑scale hard‑sci‑fi forms; subtle neon‑noir mood; consistent palette of teal/indigo with copper accents. Lighting/composition: soft nebular fill with rim edges. Rendering intent: high detail, clean edges. Avoid: text, watermarks, artifacts."
+  },
+  {
+    "index": 5,
+    "title": "Drone Ambush",
+    "narrative_role": "rising action",
+    "prompt_text": "High‑angle shot of the courier weaving through an asteroid field as swarms of mechanical drones fire beams; the star‑seed pulsing on the dashboard. Shot type: 75 mm, slightly elevated perspective. Composition: dynamic swirl of asteroids and drone trajectories; leading lines guide the eye toward the fleeing ship. Art style: iridescent bio‑tech realism with cathedral‑scale hard‑sci‑fi forms; subtle neon‑noir mood; consistent palette of teal/indigo with copper accents. Lighting/composition: cold ambient starlight with bright laser streaks. Rendering intent: high detail, clean edges. Avoid: text, watermarks, artifacts."
+  },
+  {
+    "index": 6,
+    "title": "Quantum Cathedral Approach",
+    "narrative_role": "peak",
+    "prompt_text": "Aerial shot of a towering quantum cathedral floating above a gas giant, with fractal spires and ring arcs surrounding it. The courier’s ship approaches, dwarfed by monumental scale. Shot type: 28 mm aerial tilt‑shift. Composition: sweeping arc and repeating fractal motifs. Art style: iridescent bio‑tech realism with cathedral‑scale hard‑sci‑fi forms; subtle neon‑noir mood; consistent palette of teal/indigo with copper accents. Lighting/composition: atmospheric scattering, crepuscular rays. Rendering intent: high detail, clean edges. Avoid: text, watermarks, artifacts."
+  },
+  {
+    "index": 7,
+    "title": "Hall of Light",
+    "narrative_role": "climax",
+    "prompt_text": "Interior shot of the cathedral’s hall; towering columns and hovering light grids; the android walking toward an altar. Shot type: 24 mm ultra‑wide to emphasize verticality. Composition: central aisle symmetry with towering verticals. Art style: iridescent bio‑tech realism with cathedral‑scale hard‑sci‑fi forms; subtle neon‑noir mood; consistent palette of teal/indigo with copper accents. Lighting/composition: high contrast chiaroscuro with prism hues. Rendering intent: high detail, clean edges. Avoid: text, watermarks, artifacts."
+  },
+  {
+    "index": 8,
+    "title": "Restoring the Star",
+    "narrative_role": "resolution",
+    "prompt_text": "Final close shot of the android planting the star‑seed into a crystalline altar; radiant energy pulses outward, bathing the hall in teal and copper light; the android’s silhouette glowing. Shot type: 85 mm portrait; composition: centered and symmetrical. Art style: iridescent bio‑tech realism with cathedral‑scale hard‑sci‑fi forms; subtle neon‑noir mood; consistent palette of teal/indigo with copper accents. Lighting/composition: soft rim and volumetric bloom. Rendering intent: high detail, clean edges. Avoid: text, watermarks, artifacts."
+  }
+]
