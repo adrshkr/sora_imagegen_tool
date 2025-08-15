@@ -3,7 +3,7 @@
 story_to_video.py
 Generate a sequence of images from a story and compile them into a video using OpenAI’s GPT-Image-1 model.
 Adds: progress bars (tqdm), parallel generation (threads), interactive API key prompt if missing,
-preflight checks (black/flake8/mypy/pytest), fail-fast error guards, and optional one-shot smoke test.
+preflight checks (Black and Ruff), fail-fast error guards, and optional one-shot smoke test.
 """
 
 import argparse
@@ -99,7 +99,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--no-preflight",
         action="store_true",
-        help="Skip running preflight.py (lint/format/tests) before generation.",
+        help="Skip running preflight.py (Black and Ruff) before generation.",
     )
     parser.add_argument(
         "--smoke-test",
@@ -164,12 +164,14 @@ def ensure_api_key() -> None:
 
 # ---------- Preflight runner ----------
 def run_preflight(script_dir: Path) -> None:
-    """Run preflight.py (black/flake8/mypy/pytest). Abort if it fails."""
+    """Run preflight.py (Black and Ruff). Abort if it fails."""
     preflight = script_dir / "preflight.py"
     if not preflight.exists():
         logging.warning("preflight.py not found. Skipping pre-flight checks.")
         return
-    logging.info("Running pre-flight checks (black, flake8, mypy, pytest)…")
+    # preflight.py currently runs only Black for formatting and Ruff for linting.
+    # Tests and type checks live elsewhere.
+    logging.info("Running pre-flight checks (Black and Ruff)…")
     cmd = f'"{sys.executable}" "{preflight}"'
     result = subprocess.run(cmd, shell=True)
     if result.returncode != 0:
