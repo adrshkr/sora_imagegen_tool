@@ -10,17 +10,17 @@ import argparse
 import base64
 import json
 import logging
+import multiprocessing
 import os
+import subprocess
 import sys
 import time
-from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor, as_completed
-import multiprocessing
-import subprocess
+from pathlib import Path
 
-from openai import OpenAI
-from moviepy.video.io.ImageSequenceClip import ImageSequenceClip
 from moviepy.audio.io.AudioFileClip import AudioFileClip
+from moviepy.video.io.ImageSequenceClip import ImageSequenceClip
+from openai import OpenAI
 from tqdm import tqdm  # progress bars
 
 # OpenAI client (initialized after we have a key)
@@ -126,7 +126,7 @@ def setup_logging(quiet: bool) -> None:
 
 
 def load_prompts(prompts_path: str) -> list:
-    with open(prompts_path, "r", encoding="utf-8") as f:
+    with open(prompts_path, encoding="utf-8") as f:
         scenes = json.load(f)
     if not isinstance(scenes, list):
         raise ValueError("prompts.json must contain a list of scenes")
@@ -140,7 +140,7 @@ def ensure_api_key() -> None:
     # Try loading from local.env file if it exists
     env_file_path = Path(__file__).parent / "local.env"
     if env_file_path.exists():
-        with open(env_file_path, "r", encoding="utf-8") as f:
+        with open(env_file_path, encoding="utf-8") as f:
             for line in f:
                 line = line.strip()
                 if not line or line.startswith("#"):
@@ -167,15 +167,13 @@ def run_preflight(script_dir: Path) -> None:
     """Run preflight.py (Black and Ruff). Abort if it fails."""
     preflight = script_dir / "preflight.py"
     if not preflight.exists():
-        logging.warning("preflight.py not found. Skipping pre-flight checks.")
+        logging.warning("preflight.py not found. Skipping preflight checks.")
         return
-    # preflight.py currently runs only Black for formatting and Ruff for linting.
-    # Tests and type checks live elsewhere.
-    logging.info("Running pre-flight checks (Black and Ruff)…")
+    logging.info("Running preflight checks (black, flake8, mypy, pytest)…")
     cmd = f'"{sys.executable}" "{preflight}"'
     result = subprocess.run(cmd, shell=True)
     if result.returncode != 0:
-        raise SystemExit("Pre-flight checks failed. Fix issues and re-run.")
+        raise SystemExit("Preflight checks failed. Fix issues and re-run.")
 
 
 # -------------------------------------
@@ -194,20 +192,20 @@ def smoke_test() -> None:
     except Exception as exc:
         if _is_hard_limit_error(exc):
             logging.error("❌ Billing hard limit reached during smoke test. Aborting.")
-            raise SystemExit(1)
+            raise SystemExit(1) from None
         if _is_auth_error(exc):
             logging.error("❌ Authentication error during smoke test. Check OPENAI_API_KEY. Aborting.")
-            raise SystemExit(1)
+            raise SystemExit(1) from None
         if _is_forbidden_needs_verification(exc):
             logging.error(
                 "❌ Access denied for gpt-image-1 during smoke test. Verify org/billing/model access. Aborting."
             )
-            raise SystemExit(1)
+            raise SystemExit(1) from None
         if _is_bad_request(exc):
             logging.error(f"❌ Bad request during smoke test: {exc}")
-            raise SystemExit(1)
+            raise SystemExit(1) from None
         logging.error(f"❌ Unexpected error during smoke test: {exc}")
-        raise SystemExit(1)
+        raise SystemExit(1) from None
 
 
 # -----------------------------------------------
@@ -228,10 +226,10 @@ def generate_image(prompt: str, size: str, index: int, frames_dir: Path) -> Path
                     "❌ Billing hard limit reached. "
                     "Increase your monthly limit, wait for cycle reset, or use another key. Aborting."
                 )
-                raise SystemExit(1)
+                raise SystemExit(1) from None
             if _is_auth_error(exc):
                 logging.error("❌ Authentication error calling OpenAI. Check OPENAI_API_KEY. Aborting.")
-                raise SystemExit(1)
+                raise SystemExit(1) from None
             if _is_forbidden_needs_verification(exc):
                 logging.error(
                     "❌ Access denied for gpt-image-1.\n"
@@ -240,7 +238,7 @@ def generate_image(prompt: str, size: str, index: int, frames_dir: Path) -> Path
                     "- Optionally set OPENAI_ORG_ID / OPENAI_PROJECT.\n"
                     "Aborting."
                 )
-                raise SystemExit(1)
+                raise SystemExit(1) from None
             if _is_bad_request(exc):
                 logging.error(
                     f"❌ Bad request for frame {index}: {exc}\n"
