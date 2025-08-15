@@ -300,7 +300,11 @@ def main() -> None:
     frames_dir.mkdir(parents=True, exist_ok=True)
 
     scenes = load_prompts(args.prompts_file)
-    scenes = [s for s in scenes if s.get("index") <= args.max_images][: args.max_images]
+    # Guard against missing index before comparing to max_images
+    scenes = [
+        s for s in scenes
+        if s.get("index") is not None and s["index"] <= args.max_images
+    ][: args.max_images]
 
     frame_paths: list[Path] = []
 
