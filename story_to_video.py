@@ -167,13 +167,13 @@ def run_preflight(script_dir: Path) -> None:
     """Run preflight.py (black/flake8/mypy/pytest). Abort if it fails."""
     preflight = script_dir / "preflight.py"
     if not preflight.exists():
-        logging.warning("preflight.py not found. Skipping pre-flight checks.")
+        logging.warning("preflight.py not found. Skipping preflight checks.")
         return
-    logging.info("Running pre-flight checks (black, flake8, mypy, pytest)…")
+    logging.info("Running preflight checks (black, flake8, mypy, pytest)…")
     cmd = f'"{sys.executable}" "{preflight}"'
     result = subprocess.run(cmd, shell=True)
     if result.returncode != 0:
-        raise SystemExit("Pre-flight checks failed. Fix issues and re-run.")
+        raise SystemExit("Preflight checks failed. Fix issues and re-run.")
 
 
 # -------------------------------------
