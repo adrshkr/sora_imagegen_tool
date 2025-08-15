@@ -119,7 +119,10 @@ def setup_logging(quiet: bool) -> None:
     console_handler.setLevel(console_level)
     console_handler.setFormatter(logging.Formatter("%(message)s"))
     root_logger.addHandler(console_handler)
-    file_handler = logging.FileHandler("../story-to-video/run.log", mode="a", encoding="utf-8")
+    log_dir = Path(__file__).resolve().parent / "story-to-video"
+    log_dir.mkdir(parents=True, exist_ok=True)
+    log_path = log_dir / "run.log"
+    file_handler = logging.FileHandler(log_path, mode="a", encoding="utf-8")
     file_handler.setLevel(logging.DEBUG)
     file_handler.setFormatter(logging.Formatter("%(asctime)s - %(levelname)s - %(message)s"))
     root_logger.addHandler(file_handler)
